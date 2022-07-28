@@ -1,5 +1,12 @@
 <script lang="ts">
 	import AlienGrid from '../components/alienGrid.svelte';
-</script>
+	let clientHeight: number | null | undefined;
+	let clientWidth: number | null | undefined;
 
-<AlienGrid />
+</script>
+<div class="border-blue-600 border-2 grow" bind:clientHeight bind:clientWidth>
+
+	<span class="absolute right-0 top-0">{clientWidth}x{clientHeight}</span>
+	<AlienGrid />
+
+</div>
