@@ -4,9 +4,13 @@
 	let clientWidth: number | null | undefined;
 
 </script>
-<div class="border-blue-600 border-2 grow" bind:clientHeight bind:clientWidth>
+<div class="grow bg-black text-yellow-200" bind:clientHeight bind:clientWidth>
 
-	<span class="absolute right-0 top-0">{clientWidth}x{clientHeight}</span>
+	<span class="absolute right-0 top-0 opacity-30">{clientWidth}x{clientHeight}</span>
 	<AlienGrid />
 
 </div>
+
+<style>
+
+</style>

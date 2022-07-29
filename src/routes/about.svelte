@@ -7,6 +7,6 @@
 	<p class="text-lg">It was created by me as a learning experience of Svelte & SvelteKit</p>
 	<p class="text-lg mt-5">
 		Source code can be found
-		<a class="text-orange-400 underline" href="https://github.com/lilotop/svelte-invaders">here</a>.
+		<a class="text-orange-400 underline" href="https://github.com/lilotop/svelte-invaders" target="_blank">here</a>.
 	</p>
 </div>

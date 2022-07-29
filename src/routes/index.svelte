@@ -9,7 +9,7 @@
 </script>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
-<div class="flex flex-col items-center justify-center h-full w-full bg-blue-900 text-violet-300">
+<div class="flex flex-col items-center justify-center grow bg-blue-900 text-violet-300">
 	<div class="text-9xl my-10 fixed alien">👾</div>
     <div class="text-9xl my-10 fixed stick">🕹</div>
 	<div class="text-4xl my-10 text">Hit &lt;space&gt; to start the game</div>
