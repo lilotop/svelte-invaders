@@ -4,7 +4,7 @@
 	export let currentHeight: number | null | undefined;
 </script>
 
-<div class="flex flex-col items-center justify-center h-full text-lg space-y-2 bg-slate-400">
+<div class="flex flex-col items-center justify-center h-full w-full text-lg space-y-2 bg-slate-400">
 	<div class="text-5xl icons">💻📵</div>
 	<div class="font-bold">Supported on desktop only</div>
 
