@@ -1,4 +1,4 @@
-import { readable, derived } from 'svelte/store';
+import { readable } from 'svelte/store';
 
 export default readable(Date.now(), function start(set) {
 	const interval = setInterval(() => {
