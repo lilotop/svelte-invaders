@@ -1,4 +1,15 @@
 # 🧭 Roadmap
+## ShotsManager
+> Resume store logic 
+
+> Add UI component that will do a `#each` on the store and will generate UI elements accordingly, leveraging the transition effect of svelte (like done in TODO lists) to move shots smoothly to their new position.
+
+> Add the `add` api usages in defender and in AlienGrid
+
+> Add a `remove(id)` api to remove shots after they hit or go offscreen
+
+
+
 ## AlienGrid
 
 ## ⏬

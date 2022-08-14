@@ -1,5 +1,8 @@
 # 👾 Svelte Invaders - WIP 👩‍💻
 
+## Work in Progress
+This is a work in progress, not yet functional applicaiton.  
+See [Bugs and Roadmap](src/Bugs%20and%20Roadmap.md) document for current status.
 
 ## Running locally
 
