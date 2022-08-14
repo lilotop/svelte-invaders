@@ -7,12 +7,31 @@
 </script>
 
 <script lang="ts">
-    export let col: number;
-    export let row: number;
-    export let type: AlienType;
+import gameClock from "../stores/gameClock";
+
+
+	export let col: number;
+	export let row: number;
+	export let type: AlienType;
+	export let registerApi;
+
+	function getHitResult() {
+		//TODO: animate explosion and remove image
+		return true;
+	}
+	registerApi(row, col, getHitResult);
+
+    $: animationState = ~~($gameClock / 1000 % 2) ? 'a' : 'b'; // change anumation state each second
 </script>
 
-<span class="border-red-600 border-2 p-1 m-2 flex flex-col items-center text-xs grow">
-    <span>{type}</span>
-    <span class="font-mono">C{col} R{row}</span>
+<span class="flex flex-col items-center justify-center grow">
+    <img src={`img/alien-${type}${animationState}.png`} alt="Alien">    
 </span>
+
+<style>
+    img {
+        width: 80%;
+        height: 80%;
+    }
+
+</style>

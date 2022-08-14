@@ -1,6 +1,17 @@
-import { writable, get } from 'svelte/store';
+import { writable } from 'svelte/store';
 export enum Direction { Left = '◀', Right = '▶', None = '⏹' };
-
+export namespace Direction {
+    export function flip(direction: Direction): Direction {
+        switch (direction) {
+            case Direction.Left:
+                return Direction.Right;
+            case Direction.Right:
+                return Direction.Left;
+            default:
+                return Direction.None;
+        }
+    }
+}
 let space = writable(false);
 let arrows = writable(Direction.None);
 let pause = writable(false);
@@ -20,7 +31,7 @@ export function keyboardHandler(e: any) {
             break;
         case 'KeyP':
             if (isPressed) {
-                pause.set(!get(pause));
+                pause.update(currentValue => !currentValue);
             }
             break;
 
@@ -31,8 +42,7 @@ export function keyboardHandler(e: any) {
             break;
         case 'Numpad2':
         case 'Digit2':
-            let currentValue = get(fourtyTwo);
-            fourtyTwo.set((isPressed && (currentValue === 4 || currentValue === 42)) ? 42 : 0);
+            fourtyTwo.update(currentValue => (isPressed && (currentValue === 4 || currentValue === 42)) ? 42 : 0);
             break;
         // end easter egg
     }
