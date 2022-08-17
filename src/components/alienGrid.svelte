@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Alien, { AlienType } from './alien.svelte';
-	import gameClock from '../stores/gameClock';
+	import { gameClock } from '../stores/clocks';
 	import { calcMovementDelta } from '../utils';
 	import { Direction } from '../stores/controller';
 	export let playfield: { width: number; height: number };

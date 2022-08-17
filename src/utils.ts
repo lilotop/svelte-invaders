@@ -19,13 +19,6 @@ export function calcPlayfieldDimensions(clientWidth: number, clientHeight: numbe
     return [playfieldWidth - FLOAT_BUFFER, playfieldHeight - FLOAT_BUFFER];
 }
 
-//TODO: combine this with defender move logic, use the keyboard move enum instead of the 'movingRight'
-// so that it is more generic. consolidate this to a function that gets:
-// ownSize, playfield, moveDirection, speed and gameClock (for it to be reactive)
-// only problem we have is how to switch directions for the alienGrid and also control vertical movement
-// maybe we should return the delta instead of actually changing the 'left' and if the delta is 0 - change direction!
-// for defender - don't bother to check the delta, just always add it to the 'left'.
-
 export function calcMovementDelta(desiredDirection: Direction, playfieldWidth: number, ownWidth: number, currentLeft: number, speed: number) {
     switch (desiredDirection) {
         case Direction.Right:

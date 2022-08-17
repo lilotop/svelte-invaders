@@ -7,13 +7,13 @@
 </script>
 
 <script lang="ts">
-import gameClock from "../stores/gameClock";
-
+	import { flipAnimationClock } from '../stores/clocks';
 
 	export let col: number;
 	export let row: number;
 	export let type: AlienType;
 	export let registerApi;
+	let animationState = false;
 
 	function getHitResult() {
 		//TODO: animate explosion and remove image
@@ -21,17 +21,19 @@ import gameClock from "../stores/gameClock";
 	}
 	registerApi(row, col, getHitResult);
 
-    $: animationState = ~~($gameClock / 1000 % 2) ? 'a' : 'b'; // change anumation state each second
+	$: {
+		$flipAnimationClock;
+		animationState = !animationState;
+	}
 </script>
 
 <span class="flex flex-col items-center justify-center grow">
-    <img src={`img/alien-${type}${animationState}.png`} alt="Alien">    
+	<img src={`img/alien-${type}${animationState ? 'a' : 'b'}.png`} alt="Alien" />
 </span>
 
 <style>
-    img {
-        width: 80%;
-        height: 80%;
-    }
-
+	img {
+		width: 80%;
+		height: 80%;
+	}
 </style>
