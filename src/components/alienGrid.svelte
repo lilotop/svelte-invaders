@@ -10,23 +10,28 @@
 	let aliens: { [rowCol: number]: () => boolean } = {};
 	let left: number, alienSize: number, gridWidth: number, gridHeight: number;
 	let direction = Direction.Left;
-	let speed = 10;
+	let hSpeed = playfield.width / 100;
+	const vSpeed = playfield.height / 50;
+	let top = 0;
 
 	$: {
 		alienSize = (playfield.width / COLS) * GRID_WIDTH_FACTOR;
 		gridWidth = alienSize * COLS;
 		gridHeight = alienSize * ROWS;
 		left = playfield.width / 2 - (alienSize * COLS) / 2;
-		console.log('size: ' + alienSize);
 	}
 	$: {
 		$gameClock;
-		let delta = calcMovementDelta(direction, playfield.width, gridWidth, left, speed);
+		let delta = calcMovementDelta(direction, playfield.width, gridWidth, left, hSpeed);
 		if (delta) {
 			// delta is not zero
 			left += delta;
 		} else {
 			direction = Direction.flip(direction);
+			top += vSpeed;
+			if (top + gridHeight >= playfield.height) {
+				top = 0;
+			}
 		}
 	}
 
@@ -53,6 +58,7 @@
 	style:width={`${gridWidth}px`}
 	style:height={`${gridHeight}px`}
 	style:left={`${left}px`}
+	style:top={`${top}px`}
 >
 	{#each Array(ROWS) as _, rowIndex}
 		{@const type = getRowType(rowIndex)}

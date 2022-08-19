@@ -4,6 +4,9 @@ const ASPECT_RATIO = 4 / 3;
 const FLOAT_BUFFER = 10;
 
 export function calcPlayfieldDimensions(clientWidth: number, clientHeight: number) {
+    if(!clientWidth || !clientHeight) {
+        return [0,0];
+    }
     let playfieldWidth, playfieldHeight;
     let clientRatio = clientWidth / clientHeight;
     if (clientRatio > ASPECT_RATIO) {

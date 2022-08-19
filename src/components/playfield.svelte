@@ -7,7 +7,7 @@ import Shots from './shots.svelte';
 	$: playfield = {width, height};
 </script>
 
-<div class="border-2 relative" style:width={`${width}px`} style:height={`${height}px`}>
+<div class="border-2 relative overflow-hidden" style:width={`${width}px`} style:height={`${height}px`}>
 	<AlienGrid {playfield} />
 	<Defender {playfield} />
 	<Shots {playfield} />

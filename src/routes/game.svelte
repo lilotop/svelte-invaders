@@ -40,7 +40,9 @@
 		<div>C.R {clientRatio.toFixed(3)}</div>
 		<div>PFR {playfieldRatio.toFixed(3)}</div>
 	</div>
-	<Playfield width={playfieldWidth} height={playfieldHeight} />
+	{#if clientWidth}
+		<Playfield width={playfieldWidth} height={playfieldHeight} />
+	{/if}
 </div>
 
 <style>

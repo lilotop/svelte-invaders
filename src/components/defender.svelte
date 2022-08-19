@@ -5,6 +5,7 @@
 	import shotsManager, { ShotType } from '../stores/shotsManager';
 	export let playfield: { width: number; height: number };
 	let left: number, defenderWidth: number, defenderHeight: number;
+	const speed = playfield.width / 60;
 
 	function triggerControl() {
 		if ($fire) {
@@ -24,7 +25,7 @@
 	}
 	$: {
 		$gameClock;
-		left += calcMovementDelta($move, playfield.width, defenderWidth, left, 10);
+		left += calcMovementDelta($move, playfield.width, defenderWidth, left, speed);
 	}
 	$: {
 		$fire; // this responds to the fire store (trigger)
