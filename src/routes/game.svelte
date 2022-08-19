@@ -18,8 +18,8 @@
 </script>
 
 <svelte:window
-	on:keydown|preventDefault={keyboardHandler}
-	on:keyup|preventDefault={keyboardHandler}
+	on:keydown={keyboardHandler}
+	on:keyup={keyboardHandler}
 />
 
 <div

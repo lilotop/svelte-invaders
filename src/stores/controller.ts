@@ -17,7 +17,8 @@ let arrows = writable(Direction.None);
 let pause = writable(false);
 let fourtyTwo = writable(0); // because every software must have an easter egg
 
-export function keyboardHandler(e: any) {
+export function keyboardHandler(e: KeyboardEvent) {
+    let preventDefault = true;
     let isPressed = (e.type === 'keydown');
     switch (e.code) {
         case 'Space':
@@ -45,6 +46,11 @@ export function keyboardHandler(e: any) {
             fourtyTwo.update(currentValue => (isPressed && (currentValue === 4 || currentValue === 42)) ? 42 : 0);
             break;
         // end easter egg
+        default:
+            preventDefault = false;
+    }
+    if (preventDefault) {
+        e.preventDefault();
     }
 }
 
