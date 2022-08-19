@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 import { gameClock } from "./clocks";
 
 
-const defenderShotSpeed = 10;
+const defenderShotSpeed = 50;
 const alienShotSpeed = 10;
 
 let nextShotId = 0;
@@ -16,6 +16,7 @@ export enum ShotType {
 export type Shot = {
     x: number,
     y: number,
+    limit: number,
     type: ShotType,
     id?: number
 };
@@ -25,12 +26,12 @@ let shots = writable<Array<Shot>>([]);
 gameClock.subscribe(clock => {
     // update existing shots locations each time the game clock ticks
     shots.update(currentValue => {
-        return currentValue.map(shot => {
+        return currentValue.flatMap(shot => {
             switch (shot.type) {
                 case ShotType.Alien:
-                    return {...shot, y: shot.y + alienShotSpeed};
+                    return (shot.y > shot.limit) ?  {...shot, y: shot.y + alienShotSpeed} : [];
                     case ShotType.Defender:
-                        return {...shot, y: shot.y - defenderShotSpeed};
+                        return (shot.y < shot.limit) ? {...shot, y: shot.y + defenderShotSpeed}: [];
                 default:
                     return shot; // ship shots do not move vertically
             }

@@ -10,7 +10,8 @@
 		if ($fire) {
 			shotsManager.add({
 				type: ShotType.Defender,
-				y: playfield.height,
+				limit: playfield.height,
+				y: defenderHeight,
 				x: left + defenderWidth / 2
 			});
 		}
