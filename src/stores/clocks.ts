@@ -1,11 +1,20 @@
 import { readable } from 'svelte/store';
+import gameState, { GameState } from './gameState';
+
+let gameInProgress = false;
+
+gameState.subscribe((state) => {
+    gameInProgress = state === GameState.Running;
+});
 
 function createClock(tickFreqMillisec: number) {
 
 
     return readable(Date.now(), function start(set) {
         const interval = setInterval(() => {
-            set(Date.now());
+            if (gameInProgress) {
+                set(Date.now());
+            }
         }, tickFreqMillisec);
 
         return function stop() {

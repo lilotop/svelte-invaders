@@ -2,6 +2,7 @@
 	import AlienGrid from './alienGrid.svelte';
 import Defender from './defender.svelte';
 import Shots from './shots.svelte';
+import StateNotifier from './stateNotifier.svelte';
 	export let width: number;
 	export let height: number;
 	$: playfield = {width, height};
@@ -11,6 +12,7 @@ import Shots from './shots.svelte';
 	<AlienGrid {playfield} />
 	<Defender {playfield} />
 	<Shots {playfield} />
+	<StateNotifier />
 </div>
 
 <style>

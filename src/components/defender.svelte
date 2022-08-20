@@ -3,6 +3,7 @@
 	import { calcMovementDelta } from '../utils';
 	import { fire, move } from '../stores/controller';
 	import shotsManager, { ShotType } from '../stores/shotsManager';
+	import gameState, { GameState } from '../stores/gameState';
 	export let playfield: { width: number; height: number };
 	let left: number, defenderWidth: number, defenderHeight: number;
 	const speed = playfield.width / 60;
@@ -25,11 +26,13 @@
 	}
 	$: {
 		$gameClock;
-		left += calcMovementDelta($move, playfield.width, defenderWidth, left, speed);
+		if ($gameState === GameState.Running) {
+			left += calcMovementDelta($move, playfield.width, defenderWidth, left, speed);
+		}
 	}
 	$: {
 		$fire; // this responds to the fire store (trigger)
-		triggerControl();
+		$gameState === GameState.Running && triggerControl();
 	}
 </script>
 

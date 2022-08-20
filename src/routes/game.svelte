@@ -1,12 +1,16 @@
 <script lang="ts">
 	import Playfield from '../components/playfield.svelte';
 	import { calcPlayfieldDimensions } from '../utils';
-	import { answer, fire, move, paused, keyboardHandler } from '../stores/controller';
+	import { answer, keyboardHandler } from '../stores/controller';
+import gameState, { GameState } from '../stores/gameState';
 
 	let clientHeight: number;
 	let clientWidth: number;
 
 	let playfieldWidth: number, playfieldHeight: number, clientRatio: number, playfieldRatio: number;
+
+	//TODO: should be done elsewhere after proper initialization (e.g. after game over)
+	gameState.set(GameState.Running);
 
 	$: [playfieldWidth, playfieldHeight] = calcPlayfieldDimensions(clientWidth, clientHeight);
 
@@ -28,8 +32,7 @@
 	bind:clientWidth
 >
 	<div class="text-lg absolute left-5 top-5">
-		{$fire ? '💥💥💥💥💥' : 'Space to fire...'} |
-		{$paused ? '⏸' : '▶'} (P to toggle) | Move: {$move} (use arrows)
+		{GameState[$gameState]}
 	</div>
 	<div class="text-xl text-blue-700 font-extrabold absolute left-5 top-14">
 		{$answer === 42 ? '🐬 You have found the answer to life, the universe and everything! 🍺' : ''}
